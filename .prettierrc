@@ -1,11 +1,15 @@
 {
-  "trailingComma": "none",
-  "semi": false,
-  "useTabs": true,
-  "tabWidth": 2,
-  "jsxSingleQuote": true,
-  "bracketSameLine": true,
-  "singleQuote": false,
-  "arrowParens": "avoid",
-  "printWidth": 100 
+	"trailingComma": "none",
+	"semi": true,
+	"useTabs": true,
+	"tabWidth": 2,
+	"jsxSingleQuote": true,
+	"bracketSameLine": true,
+	"singleQuote": false,
+	"arrowParens": "avoid",
+	"printWidth": 100,
+	"importOrder": ["<THIRD_PARTY_MODULES>"],
+	"importOrderParserPlugins": ["typescript", "decorators-legacy"],
+	"importOrderSeparation": true,
+	"importOrderSortSpecifiers": true
 }

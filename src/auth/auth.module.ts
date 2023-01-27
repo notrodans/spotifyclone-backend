@@ -1,12 +1,14 @@
-import { getJwtConfig } from "../config/jwt.config"
-import { Module } from "@nestjs/common"
-import { ConfigModule, ConfigService } from "@nestjs/config"
-import { JwtModule } from "@nestjs/jwt"
-import { AuthController } from "./auth.controller"
-import { AuthService } from "./auth.service"
-import { JwtStrategy } from "./strategies/jwt.strategy"
-import { PassportModule } from "@nestjs/passport"
-import { ArtistModule } from "../artist/artist.module"
+import { AuthController } from "./auth.controller";
+import { AuthService } from "./auth.service";
+import { JwtStrategy } from "./strategies/jwt.guard";
+import { ArtistService } from "@artist/artist.service";
+import { ArtistModel } from "@artist/models/artist.model";
+import { getJwtConfig } from "@config/jwt.config";
+import { Module } from "@nestjs/common";
+import { ConfigModule, ConfigService } from "@nestjs/config";
+import { JwtModule } from "@nestjs/jwt";
+import { PassportModule } from "@nestjs/passport";
+import { TypegooseModule } from "nestjs-typegoose";
 
 @Module({
 	imports: [
@@ -15,11 +17,18 @@ import { ArtistModule } from "../artist/artist.module"
 			inject: [ConfigService],
 			useFactory: getJwtConfig
 		}),
-		ConfigModule,
+		TypegooseModule.forFeature([
+			{
+				typegooseClass: ArtistModel,
+				schemaOptions: {
+					collection: "Artist"
+				}
+			}
+		]),
 		PassportModule,
-		ArtistModule
+		ConfigModule
 	],
 	controllers: [AuthController],
-	providers: [AuthService, JwtStrategy]
+	providers: [AuthService, ArtistService, JwtStrategy]
 })
 export class AuthModule {}

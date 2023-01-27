@@ -1,5 +1,5 @@
-import { Controller } from "@nestjs/common"
-import { AlbumService } from "./album.service"
+import { AlbumService } from "./album.service";
+import { Controller } from "@nestjs/common";
 
 @Controller("album")
 export class AlbumController {

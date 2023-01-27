@@ -1,9 +1,9 @@
-import { Module } from "@nestjs/common"
-import { TrackService } from "./track.service"
-import { TrackController } from "./track.controller"
-import { TypegooseModule } from "nestjs-typegoose"
-import { TrackModel } from "./models/track.model"
-import { FileService } from "src/file/file.service"
+import { TrackModel } from "./models/track.model";
+import { TrackController } from "./track.controller";
+import { TrackService } from "./track.service";
+import { FileService } from "@file/file.service";
+import { Module } from "@nestjs/common";
+import { TypegooseModule } from "nestjs-typegoose";
 
 @Module({
 	imports: [

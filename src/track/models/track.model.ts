@@ -1,18 +1,18 @@
-import { Prop } from "@typegoose/typegoose"
+import { Prop } from "@typegoose/typegoose";
 
 export class TrackModel {
 	@Prop()
-	name: string
+	name: string;
 
 	@Prop()
-	artist: string
+	artist: string;
 
 	@Prop()
-	listens: number
+	listens: number;
 
 	@Prop()
-	picture: string
+	picture: string;
 
 	@Prop()
-	audio: string
+	audio: string;
 }

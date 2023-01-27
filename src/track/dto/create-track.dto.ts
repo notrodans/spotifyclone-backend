@@ -1,9 +1,9 @@
-import { IsString } from "class-validator"
+import { IsString } from "class-validator";
 
 export class CreateTrackDto {
 	@IsString()
-	name: string
+	name: string;
 
 	@IsString()
-	artist: string
+	artist: string;
 }

@@ -1,12 +1,12 @@
-import { Prop } from "@typegoose/typegoose"
+import { Prop } from "@typegoose/typegoose";
 
 export class ArtistModel {
 	@Prop({ unique: true })
-	login: string
+	login: string;
 
 	@Prop()
-	email: string
+	email: string;
 
 	@Prop()
-	passwordHash: string
+	passwordHash: string;
 }

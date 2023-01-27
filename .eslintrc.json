@@ -1,21 +1,38 @@
 {
-	"parser": "@typescript-eslint/parser",
+	"root": true,
 	"parserOptions": {
 		"project": "tsconfig.json",
 		"sourceType": "module"
 	},
-	"plugins": ["@typescript-eslint/eslint-plugin", "prettier", "import"],
+	"parser": "@typescript-eslint/parser",
 	"extends": [
-		"plugin:@typescript-eslint/recommended",
-		"plugin:prettier/recommended"
+		"plugin:@typescript-eslint/eslint-recommended",
+		"plugin:@typescript-eslint/recommended"
 	],
-	"root": true,
+	"plugins": ["@typescript-eslint/eslint-plugin", "prettier"],
 	"env": {
 		"node": true,
 		"jest": true
 	},
 	"rules": {
-		"prettier/prettier": "warn",
+		"prettier/prettier": [
+			"error",
+			{
+				"trailingComma": "none",
+				"semi": true,
+				"useTabs": true,
+				"tabWidth": 2,
+				"jsxSingleQuote": true,
+				"bracketSameLine": true,
+				"singleQuote": false,
+				"arrowParens": "avoid",
+				"printWidth": 100,
+				"importOrder": ["<THIRD_PARTY_MODULES>"],
+				"importOrderParserPlugins": ["typescript", "decorators-legacy"],
+				"importOrderSeparation": true,
+				"importOrderSortSpecifiers": true
+			}
+		],
 		"@typescript-eslint/interface-name-prefix": "off",
 		"@typescript-eslint/explicit-function-return-type": "off",
 		"@typescript-eslint/explicit-module-boundary-types": "off",

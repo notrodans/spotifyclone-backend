@@ -1,3 +1,6 @@
+import { CreateTrackDto } from "./dto/create-track.dto";
+import { TRACK_NOT_FOUND_ERROR } from "./track.constants";
+import { TrackService } from "./track.service";
 import {
 	Body,
 	Controller,
@@ -12,21 +15,18 @@ import {
 	UseInterceptors,
 	UsePipes,
 	ValidationPipe
-} from "@nestjs/common"
-import { FileFieldsInterceptor } from "@nestjs/platform-express"
-import { ObjectId } from "mongoose"
-import { CreateTrackDto } from "./dto/create-track.dto"
-import { TRACK_NOT_FOUND_ERROR } from "./track.constants"
-import { TrackService } from "./track.service"
+} from "@nestjs/common";
+import { FileFieldsInterceptor } from "@nestjs/platform-express";
+import { ObjectId } from "mongoose";
 
 interface FileFieldsCreate {
-	picture?: Express.Multer.File
-	audio?: Express.Multer.File
+	picture?: Express.Multer.File;
+	audio?: Express.Multer.File;
 }
 
 @Controller("tracks")
 export class TrackController {
-	constructor(private readonly trackService: TrackService) { }
+	constructor(private readonly trackService: TrackService) {}
 
 	@UsePipes(new ValidationPipe())
 	@Post()
@@ -37,45 +37,45 @@ export class TrackController {
 		])
 	)
 	async create(@UploadedFiles() files: FileFieldsCreate, @Body("create") dto: CreateTrackDto) {
-		const { picture, audio } = files
+		const { picture, audio } = files;
 		if (!picture || !audio) {
 			throw new HttpException(
 				"Аудио или картинка не были загружены",
 				HttpStatus.INTERNAL_SERVER_ERROR
-			)
+			);
 		}
-		return await this.trackService.create(dto, audio[0], picture[0])
+		return await this.trackService.create(dto, audio[0], picture[0]);
 	}
 
 	@Get()
 	async getAll() {
-		const allTracks = await this.trackService.getAll()
+		const allTracks = await this.trackService.getAll();
 		if (!allTracks.length) {
-			throw new NotFoundException("Треки не были найдены")
+			throw new NotFoundException("Треки не были найдены");
 		}
-		return allTracks
+		return allTracks;
 	}
 
 	@Get(":id")
 	async getOne(@Param("id") id: ObjectId) {
-		const track = await this.trackService.getOne(id)
+		const track = await this.trackService.getOne(id);
 		if (!track) {
-			throw new NotFoundException(TRACK_NOT_FOUND_ERROR)
+			throw new NotFoundException(TRACK_NOT_FOUND_ERROR);
 		}
-		return track
+		return track;
 	}
 
 	@Delete("delete/:id")
 	async delete(@Param("id") id: ObjectId) {
-		const removeTrack = await this.trackService.delete(id)
+		const removeTrack = await this.trackService.delete(id);
 		if (!removeTrack) {
-			throw new NotFoundException(TRACK_NOT_FOUND_ERROR)
+			throw new NotFoundException(TRACK_NOT_FOUND_ERROR);
 		}
-		return removeTrack
+		return removeTrack;
 	}
 
 	@Post("listen/:id")
 	async listen(@Param("id") id: ObjectId) {
-		return await this.trackService.listen(id)
+		return await this.trackService.listen(id);
 	}
 }

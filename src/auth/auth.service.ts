@@ -23,6 +23,7 @@ export class AuthService {
 		const newUser = new this.artistModel({
 			login: dto.login,
 			email: dto.email,
+			role: "admin",
 			passwordHash: await hash(dto.password, salt)
 		});
 		return newUser.save();

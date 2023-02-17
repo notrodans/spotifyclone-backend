@@ -9,4 +9,7 @@ export class ArtistModel {
 
 	@Prop()
 	passwordHash: string;
+
+	@Prop()
+	role: string;
 }

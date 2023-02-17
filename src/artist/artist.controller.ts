@@ -1,14 +1,7 @@
 import { ArtistService } from "./artist.service";
 import { USER_NOT_FOUND_ERROR } from "@auth/auth.constants";
 import { JwtGuard } from "@guards/jwt.guard";
-import {
-	BadRequestException,
-	Controller,
-	Get,
-	NotFoundException,
-	Param,
-	UseGuards
-} from "@nestjs/common";
+import { Controller, Get, NotFoundException, Param, UseGuards } from "@nestjs/common";
 
 @Controller("artist")
 export class ArtistController {
